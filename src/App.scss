@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100..900&display=swap');
+
+// SCSS 변수 선언
+:root{
+  --blackColor:#000;
+  --grayColor:#555;
+  --lightGrayColor: #c8c8c8;
+  --MainFont:"Hahmlet", serif;
+}
+
+// 사이트 전체 스타일 초기화작업
+*{margin: 0;padding: 0;user-select: none;}
+a{text-decoration: none; color: inherit;}
+li{list-style: none;}
+
+// App class
+.App{
+  width: 100vw;
+  height: 100vh;
+}
+
+// 사이트 Header부분
+header{
+  width: 100%;
+  height: 10rem;
+  background-color: rgba(255, 255, 255, 0.42);
+  &.absolute{
+    position: absolute;
+    top:0;left:0;
+    z-index: 99;
+  }
+  .header-inner{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 85%;
+    height: 100%;
+    margin: auto;
+    padding: 0 2%;
+    // 구분용
+    outline: 1px solid;
+    
+    #gnb{
+      width: 50%;
+      height: inherit;
+      border: 1px solid;
+      margin-left: 11%;
+      nav{
+        box-sizing: border-box;
+        width: 100%;
+        height: inherit;
+        padding: 0 4%;
+        ul{
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 5%;
+          width: inherit;
+          height: inherit;
+
+          
+          // NAV 변수 선언 
+          $addBackGround : "📋","➕","📊","⚙️";
+          // Nav
+          @for $cln from 1 through 4{
+            .nav-items#{$cln}{
+              font-size: 30px;
+              height: 100%;
+              line-height: 150px;
+              text-align: center;
+              position: relative;
+              a{
+              box-sizing: border-box;
+              display: inline-block;
+              width: 100%;
+              height: 100%;
+              }
+            }
+            .nav-items#{$cln}:hover{
+                font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+  .user-table{
+    width: 10%;
+    height: 100%;
+    border: 1px solid;
+  }
+}
+
+// 사이트 바디부분
+.page-wrapper{
+  width: 100%;
+  height: calc(100vh - 10rem);
+  overflow: hidden;
+  .page-inner{
+  width: 85%;
+  height: 100%;
+  margin: 0 auto;
+  border: 1px solid;
+  .page-content{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 5rem 0 0;
+  }
+  h2{
+    font-size: 40px;
+    text-align: center;
+  }
+  form{
+    width: 50%;
+    height: 400px;
+    margin: 0 auto;
+  label{
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    span{
+      display: block;
+      width: 100%;
+      height: 5%;
+      font-size: 30px;
+      text-align: center;
+    }
+    input{
+      box-sizing: border-box;
+      width: 100%;
+      font-size: 30px;
+      text-indent: 15px;
+      padding: 5px 10px;
+    }
+  }
+  }
+  }
+}
+input{width: 100%; font-size: 20px;}
+
+// 메인페이지 각각 세팅
+.mainpage{
+  background-color: lightblue;
+}
+.section{
+  display: block !important;
+  width: 85% !important;
+  height: 100%;
+  margin: 0 auto;
+  text-align: unset !important;
+  .section-inner{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 10rem 0 0;
+    .section-left,.section-right{
+      width: 50%;
+      height: 100%;
+      float: left;
+      position: relative;
+      .section-title{
+      font-size: 10rem;
+      font-family: var(--MainFont);
+      font-weight: 500;
+      overflow: hidden;
+      .title-text{
+        transform: translateY(300px);
+        transition: all 1s 0s ease-in-out;
+        transform-origin: bottom;
+        &.animate{
+          transform: translateY(0);
+        }
+      }
+      }
+      .section-subtitle{
+        width: 100%;
+        font-size: 2.2rem;
+        text-align: right;
+        position: absolute;
+        top:10%;
+      }
+      .text-wrapper,.startNow,.scroll-animation{
+        width: 100%;
+        height: 10%;
+        font-weight: bold;
+        font-size: 35px;
+        text-align: right;
+        position: absolute;
+        top:25%;
+      }
+      .startNow{
+        top:50%;
+        text-align: center;
+      }
+      .scroll-animation{
+        top: unset;
+        bottom: 20%;
+        line-height: 70px;
+        font-size: 20px;
+        text-align: center;
+        span{
+          display: inline-block
+        }
+        @keyframes animated {
+          from{
+            transform: translateY(10px);
+          }
+          to{
+            transform: translateY(0);
+          }
+        }
+        .arrow{
+          width: 30px;
+          height: 30px;
+          position: absolute;
+          top:25%;right:32%;
+          animation:animated 1s 0.2s infinite alternate-reverse linear;
+          &::after{
+            content: "";
+            display: block;
+            width: inherit;
+            height: inherit;
+            background: url(./imgs/free-icon-arrow-up-17927739.png) no-repeat center center;
+            background-size: 30px 30px;
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+    .section-right{
+      float: right;
+      text-align: center;
+    }
+    
+  }
+}
+
+
+.fp-overflow{
+  height: 100vh;
+}
+
+.fp-watermark{
+  display: none !important;
+}

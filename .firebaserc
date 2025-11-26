@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "test": "paytimer-61bd8",
+    "default": "paytimer-61bd8"
+  },
+  "targets": {},
+  "etags": {}
+}

@@ -1,0 +1,63 @@
+//Pages.scss
+
+// 기타
+.outerSelectItem{
+  width: 100%;
+  border: 1px solid var(--lightGrayColor);
+  border-radius: 13px;
+  font-size: 30px;
+}
+form{
+  position: relative;
+}
+input{
+  border-radius: 13px;
+  border: 1px solid var(--lightGrayColor);
+}
+select{
+  width: 100%;
+  font-size: 30px;
+  border-radius: 13px;
+}
+
+// 페이지scss
+.InnerBox-wrapper{
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 50%;
+  border: 1px solid;
+  border-radius: 15px;
+  position: absolute;
+  top:14%;right:-26%;
+  .InnerBox-Items{
+    width: calc(100% / 4);
+    border-radius: 0;
+    .InnerBox-Image{
+      display: block;
+      width: 100%;
+      img{
+        width: inherit;
+        object-fit: contain;
+      }
+    }
+    .InnerBox-text{
+      display: block;
+      font-size: 15px;
+      height: 20%;
+    }
+  }
+}
+.table-content{
+  width: 100%;
+  height: 100%;
+  .table-arrays{
+    display: flex;
+    flex-wrap: wrap;
+    width: inherit;
+    height: inherit;
+
+  }
+}
