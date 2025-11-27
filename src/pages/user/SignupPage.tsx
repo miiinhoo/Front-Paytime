@@ -3,6 +3,7 @@ import ButtonComponent from "../../components/common/ButtonComponent";
 import useEvent from "../../hooks/useEvent";
 import SpreadMyArrays from "../../components/user/SpreadUserComponent";
 import useAuthFireBase from "../../hooks/useAuthFireBase";
+import toast from "react-hot-toast";
   
 
 export default function JoinPage():JSX.Element{
@@ -20,10 +21,9 @@ export default function JoinPage():JSX.Element{
   // 회원가입을 해주는 함수 생성
   const handleUserInfo = () => {
     if( !change.email || !change.password ) {
-      alert("아이디 또는 비밀번호가 빈칸.")
+      toast.error("아이디 또는 비밀번호가 빈칸입니다..")
       return;
     }
-    alert("회원가입이 완료되었습니다.")
     trySignup(change.email,change.password,change.name);
     setChange({email:"",password:""});
     navigate("/user/login")

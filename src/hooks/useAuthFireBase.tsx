@@ -2,6 +2,8 @@ import { useState } from "react";
 import { UserLogin, UserLogout, UserSignup } from "../api/FireBaseAPI";
 import useEvent from "./useEvent";
 import { updateProfile } from "firebase/auth";
+import toast from "react-hot-toast";
+import { auth } from "../firebase";
 
 export default function useAuthFireBase (){
 
@@ -18,12 +20,12 @@ export default function useAuthFireBase (){
       setLoading(true);
       const res = await UserLogin(email,password);
       setUser(res.user);
-      console.log("로그인 성공");
+      toast.success(`안녕하세요, ${auth.currentUser?.displayName}님!`);
       navigate("/#firstPage");
     }catch (err: any) {
-      if (err.code === "auth/user-not-found") alert("해당 이메일의 계정이 없습니다.");
-      else if (err.code === "auth/wrong-password") alert("비밀번호가 잘못되었습니다.");
-      else alert("로그인 실패: " + err.message);
+      if (err.code === "auth/user-not-found") toast.error("해당 이메일의 계정이 없습니다.");
+      else if (err.code === "auth/wrong-password") toast.error("비밀번호가 잘못되었습니다.");
+      else toast.error("로그인 실패");
       setError(err.message);
     }
     finally{
@@ -41,11 +43,11 @@ export default function useAuthFireBase (){
       await updateProfile(user, {displayName : name});
 
       setUser(res.user);
-      console.log("회원가입 성공")
+      toast.success("회원가입을 완료했습니다.")
     }catch(err:any){
-      if(err.code === "auth/invalid-email") alert("이메일의 형식이 잘못되었습니다.");
-      else if(err.code === "auth/weak-password") alert("비밀번호는 6자 이상이여야 합니다.");
-      else alert("서버 에러.");
+      if(err.code === "auth/invalid-email") toast.error("이메일의 형식이 잘못되었습니다.");
+      else if(err.code === "auth/weak-password") toast.error("비밀번호는 6자 이상이여야 합니다.");
+      else toast.error("서버 에러.");
       console.error(err);
       setError(err)
     }finally{
@@ -58,9 +60,9 @@ export default function useAuthFireBase (){
       setLoading(true);
       await UserLogout();
       setUser(null);
-      console.log("로그아웃 성공");
+      toast.success("로그아웃 성공!");
     }catch(err:any){
-      console.log("로그아웃 실패!" + err);
+      toast.error("로그아웃 실패!" + err);
       setError(err);
     }finally{
       setLoading(false);
